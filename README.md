@@ -1,13 +1,14 @@
 # Industrial Steel Surface Defect Inspection Service
 
 [![CI/CD Pipeline](https://github.com/parasdhiman/neu-det-defect-inspection-service/actions/workflows/ci.yml/badge.svg)](https://github.com/parasdhiman/neu-det-defect-inspection-service/actions)
+[![uv Powered](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Python 3.10 | 3.11](https://img.shields.io/badge/Python-3.10%20%7C%203.11-blue.svg)](https://www.python.org/)
 [![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-INT8_Quantized-green.svg)](https://onnxruntime.ai/)
 [![FastAPI](https://img.shields.io/badge/Serving-FastAPI_0.104+-teal.svg)](https://fastapi.tiangolo.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-Production_Ready-326ce5.svg)](https://kubernetes.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **One-line Pitch:** An end-to-end metallurgical defect-detection and quality assurance platform—from robust YOLOv8 training and statistical drift monitoring to a containerized, Kubernetes-deployed ONNX INT8 microservice delivering near-the-line inference at **7.4ms p95** latency on CPU.
+> **One-line Pitch:** An end-to-end metallurgical defect-detection and quality assurance platform—from robust YOLOv8 training and statistical drift monitoring to a containerized, Kubernetes-deployed ONNX INT8 microservice delivering near-the-line inference at **7.4ms p95** latency on CPU. Managed natively with **Astral `uv`** via `pyproject.toml` and `uv.lock`.
 
 ---
 
@@ -25,7 +26,7 @@
 11. [Containerization & Kubernetes Deployment](#containerization--kubernetes-deployment)
 12. [When ML is NOT the Right Answer](#when-ml-is-not-the-right-answer)
 13. [Verified Resume Impact Bullets](#verified-resume-impact-bullets)
-14. [Quickstart & Reproduction Guide](#quickstart--reproduction-guide)
+14. [Quickstart & Reproduction Guide (`uv` Native)](#quickstart--reproduction-guide-uv-native)
 
 ---
 
@@ -275,8 +276,9 @@ The FastAPI microservice provides production endpoints with OpenAPI documentatio
 
 The service is fully containerized and includes production Kubernetes manifests under `k8s/`.
 
-### Multi-Stage Dockerfile
+### Multi-Stage Dockerfile (Powered by uv)
 - Minimal `python:3.11-slim` runtime image.
+- Astral `uv` binary copied directly for ultra-fast, frozen deterministic installation.
 - Non-root user execution (`appuser:appgroup`, UID 10001).
 - Built-in container healthcheck querying `/health`.
 
@@ -322,43 +324,41 @@ In industrial quality engineering, deploying deep learning when simpler methods 
 
 ---
 
-## Quickstart & Reproduction Guide
+## Quickstart & Reproduction Guide (`uv` Native)
 
-### 1. Environment Setup
+### 1. Environment Setup via `uv`
 ```bash
-# Create Python 3.11 virtual environment
-uv venv --python /usr/local/bin/python3 .venv
-source .venv/bin/activate
-uv pip install -r requirements.txt
+# Sync dependencies and development tools directly from pyproject.toml & uv.lock
+uv sync --all-groups
 ```
 
 ### 2. Data Preparation & Stratified Split
 ```bash
-python data/convert_and_split.py
-python src/augment.py
+uv run python data/convert_and_split.py
+uv run python src/augment.py
 ```
 
 ### 3. Edge Export & Benchmarking
 ```bash
-python src/export.py --weights models/champion_best.pt
+uv run python src/export.py --weights models/champion_best.pt
 ```
 
 ### 4. Drift Monitoring Demo
 ```bash
-python src/monitor/drift.py --demo
+uv run python src/monitor/drift.py --demo
 ```
 
 ### 5. Anomaly Baseline Evaluation
 ```bash
-python src/anomaly/patchcore.py --eval
+uv run python src/anomaly/patchcore.py --eval
 ```
 
 ### 6. Run Test Suite
 ```bash
-pytest -v tests/
+uv run pytest -v tests/
 ```
 
 ### 7. Launch Serving API
 ```bash
-uvicorn src.serve.app:app --host 0.0.0.0 --port 8000
+uv run uvicorn src.serve.app:app --host 0.0.0.0 --port 8000
 ```

@@ -1,6 +1,6 @@
 # ==============================================================================
 # Multi-stage Dockerfile for Steel Surface Defect Inspection Service
-# Optimized for minimal footprint, non-root security, and ONNX Runtime CPU execution
+# Powered natively by Astral uv for ultra-fast, deterministic dependency resolution
 # ==============================================================================
 
 FROM python:3.11-slim as runtime
@@ -12,20 +12,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy uv binary from official Astral image
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 # Create non-root system user for container security
 RUN groupadd -g 10001 appgroup && \
     useradd -u 10001 -g appgroup -s /bin/bash -m appuser
 
 WORKDIR /app
 
-# Copy dependency specifications
-COPY requirements.txt .
+# Copy pyproject.toml and uv.lock for deterministic caching
+COPY pyproject.toml uv.lock ./
 
-# Install dependencies into system python
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install dependencies using uv sync (frozen and no cache)
+RUN uv sync --frozen --no-cache --no-dev
 
-# Copy source code, models, and reference baseline
+# Copy application source code, models, and baseline statistics
 COPY src/ /app/src/
 COPY models/ /app/models/
 COPY reports/ /app/reports/
@@ -36,6 +38,9 @@ RUN chown -R appuser:appgroup /app
 # Switch to non-root user
 USER 10001
 
+# Place uv virtualenv on PATH
+ENV PATH="/app/.venv/bin:$PATH"
+
 # Expose HTTP port
 EXPOSE 8000
 
@@ -43,5 +48,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=20s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Launch production ASGI server
-CMD ["uvicorn", "src.serve.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+# Launch production ASGI server via uv run
+CMD ["uv", "run", "uvicorn", "src.serve.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]

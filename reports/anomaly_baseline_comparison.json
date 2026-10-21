@@ -29,8 +29,8 @@
   },
   "evaluation_metrics": {
     "test_samples_evaluated": 60,
-    "mean_patchcore_anomaly_score": 0.8123,
-    "p95_patchcore_anomaly_score": 0.8873,
+    "mean_patchcore_anomaly_score": 0.8191,
+    "p95_patchcore_anomaly_score": 0.9036,
     "inference_device": "mps"
   }
 }

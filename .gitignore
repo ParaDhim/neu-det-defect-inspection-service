@@ -26,3 +26,4 @@ runs/
 
 # Dataset large files if needed
 data/raw/
+*.egg-info/
