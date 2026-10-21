@@ -11,6 +11,9 @@ env/
 # Training artifacts & runs
 runs/
 *.log
+mlflow.db
+mlruns/
+yolov8*.pt
 
 # Caches
 .cache/
@@ -26,4 +29,5 @@ runs/
 
 # Dataset large files if needed
 data/raw/
+data/processed/
 *.egg-info/

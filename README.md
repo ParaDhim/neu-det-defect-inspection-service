@@ -12,21 +12,30 @@
 
 ---
 
+## Visual Defect Inspection Gallery
+
+![Qualitative Defect Detections Grid](reports/qualitative_detections_grid.png)
+
+*Figure 1: Automated defect localizations on test steel surfaces across all 6 target defect classes (`crazing`, `inclusion`, `patches`, `pitted_surface`, `rolled-in_scale`, `scratches`) with predicted bounding boxes and calibrated class confidence scores.*
+
+---
+
 ## Table of Contents
 1. [System Architecture](#system-architecture)
 2. [Dataset & Stratified Distribution](#dataset--stratified-distribution)
 3. [Experiment Tracking & Research Results](#experiment-tracking--research-results)
-4. [Harsh Lighting Shift & Robustness Analysis](#harsh-lighting-shift--robustness-analysis)
-5. [Error Analysis & Confusion Matrix](#error-analysis--confusion-matrix)
-6. [Edge Export & CPU Benchmarking (ONNX FP32 vs INT8)](#edge-export--cpu-benchmarking-onnx-fp32-vs-int8)
-7. [Covariate Drift Monitoring & Automated Retraining Trigger](#covariate-drift-monitoring--automated-retraining-trigger)
-8. [Unsupervised Anomaly Baseline (PatchCore vs Supervised YOLO)](#unsupervised-anomaly-baseline-patchcore-vs-supervised-yolo)
-9. [Automated Metallurgical & LLM Reporting](#automated-metallurgical--llm-reporting)
-10. [Serving API Specification](#serving-api-specification)
-11. [Containerization & Kubernetes Deployment](#containerization--kubernetes-deployment)
-12. [When ML is NOT the Right Answer](#when-ml-is-not-the-right-answer)
-13. [Verified Resume Impact Bullets](#verified-resume-impact-bullets)
-14. [Quickstart & Reproduction Guide (`uv` Native)](#quickstart--reproduction-guide-uv-native)
+4. [Precision, Recall & F1 Evaluation Across Splits](#precision-recall--f1-evaluation-across-splits)
+5. [Harsh Lighting Shift & Robustness Analysis](#harsh-lighting-shift--robustness-analysis)
+6. [Error Analysis & Confusion Matrix](#error-analysis--confusion-matrix)
+7. [Edge Export & CPU Benchmarking (ONNX FP32 vs INT8)](#edge-export--cpu-benchmarking-onnx-fp32-vs-int8)
+8. [Covariate Drift Monitoring & Automated Retraining Trigger](#covariate-drift-monitoring--automated-retraining-trigger)
+9. [Unsupervised Anomaly Baseline (PatchCore vs Supervised YOLO)](#unsupervised-anomaly-baseline-patchcore-vs-supervised-yolo)
+10. [Automated Metallurgical & LLM Reporting](#automated-metallurgical--llm-reporting)
+11. [Serving API Specification](#serving-api-specification)
+12. [Containerization & Kubernetes Deployment](#containerization--kubernetes-deployment)
+13. [When ML is NOT the Right Answer](#when-ml-is-not-the-right-answer)
+14. [Verified Resume Impact Bullets](#verified-resume-impact-bullets)
+15. [Quickstart & Reproduction Guide (`uv` Native)](#quickstart--reproduction-guide-uv-native)
 
 ---
 
@@ -114,6 +123,27 @@ We executed a systematic Design of Experiments (DOE) logged into **MLflow** (`sq
 
 ---
 
+## Precision, Recall & F1 Evaluation Across Splits
+
+To rigorously benchmark generalization and verify absence of catastrophic overfitting, Precision, Recall, F1 score, and mAP were evaluated across all splits using the calibrated F1-optimal confidence threshold ($0.28$).
+
+### Train vs Val vs Test Empirical Metrics
+
+| Dataset Split | Precision | Recall | **F1 Score** | mAP@50 | mAP@50-95 | Evaluated Images |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Train Split (In-Domain)** | 0.603 | 0.569 | **0.586** | 0.491 | 0.237 | 1,438 |
+| **Validation Split** | 0.568 | 0.534 | **0.550** | 0.487 | 0.223 | 180 |
+| **Test Split (Clean)** | 0.544 | 0.535 | **0.540** | 0.500 | 0.232 | 179 |
+| **Test Split (Harsh Shifted)** | 0.470 | 0.232 | **0.310** | 0.185 | 0.065 | 179 |
+
+<p align="center">
+  <img src="reports/BoxF1_curve.png" width="48%" alt="F1-Confidence Curve" />
+  <img src="reports/BoxPR_curve.png" width="48%" alt="Precision-Recall Curve" />
+</p>
+<p align="center"><em>Figure 2: (Left) F1-Confidence Curve showing peak F1 score at confidence threshold 0.28; (Right) Precision-Recall Curve across all 6 defect classes.</em></p>
+
+---
+
 ## Harsh Lighting Shift & Robustness Analysis
 
 In real-world steel manufacturing, visual inspection cameras suffer from harsh factory conditions:
@@ -122,6 +152,10 @@ In real-world steel manufacturing, visual inspection cameras suffer from harsh f
 3. **Occlusion & Shadow Casts:** Overhead gantry arms, tension levelers, and roller frames casting directional shadows.
 4. **Thermal Grain & Sensor Noise:** High ambient temperature in hot rolling mills.
 5. **Defocus & Vibration Blur:** High-speed line velocities ($15-25 \text{ m/s}$).
+
+![Lighting Shift Visual Comparison](reports/lighting_shift_visual_comparison.png)
+
+*Figure 3: Side-by-side visual comparison of test images under canonical clean inspection lighting (Left) versus harsh simulated industrial plant perturbations with shadows, noise, and glare (Right).*
 
 ### Per-Class Performance Breakdown: Clean vs Shifted (Champion Model)
 
@@ -138,18 +172,10 @@ In real-world steel manufacturing, visual inspection cameras suffer from harsh f
 
 ## Error Analysis & Confusion Matrix
 
-The confusion matrix for test evaluations is archived at `reports/confusion_matrix.png`.
-
-```
-                      PREDICTED CLASS
-             Cr     In     Pa     PS     RS     Sc    Background
-True  Cr  [   1      0      0      0      0      0       78     ]  <-- Micro-crack fissure resolution loss
-      In  [   0     46      3      4      2      0       32     ]  <-- Slag inclusion false negatives
-      Pa  [   0      1     76      2      0      1        7     ]  <-- High precision localization (87%)
-      PS  [   0      1      0     29      0      0       11     ]  <-- Pitted texture vs roll marks
-      RS  [   0      2      2      0      7      0       46     ]  <-- Low optical contrast vs background
-      Sc  [   0      2      2      1      0     33       18     ]  <-- Scratches vs crazing line confusion
-```
+<p align="center">
+  <img src="reports/confusion_matrix.png" width="70%" alt="Confusion Matrix" />
+</p>
+<p align="center"><em>Figure 4: NEU-DET Test Split Confusion Matrix heatmap with row-normalized class predictions.</em></p>
 
 ### 5-Line Metallurgical Error Analysis
 1. **Crazing vs. Background Confusion:** Crazing micro-fissures exhibit the lowest pixel contrast relative to base steel; at $224 \times 224$ resolution, sub-millimeter crack networks fall below the Shannon-Nyquist spatial sampling threshold and are primarily missed as background.
