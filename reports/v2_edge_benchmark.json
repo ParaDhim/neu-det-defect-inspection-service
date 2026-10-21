@@ -1,21 +1,64 @@
 {
-  "fp32": {
-    "size_mb": 44.75,
-    "p50_ms": 43.15,
-    "p90_ms": 43.39,
-    "p95_ms": 43.67,
-    "p99_ms": 48.63,
-    "mean_ms": 43.35,
-    "fps": 23.1
+  "hardware": {
+    "cpu": "Intel(R) Xeon(R) Gold 6242R CPU @ 3.10GHz",
+    "threads": 4,
+    "batch_size": 1,
+    "onnxruntime_version": "1.24.3 / 1.31.0",
+    "evaluation_split": "NEU-DET test (179 images)",
+    "conf_threshold": 0.28
   },
-  "int8": {
-    "size_mb": 11.49,
-    "p50_ms": 188.96,
-    "p90_ms": 189.51,
-    "p95_ms": 189.77,
-    "p99_ms": 190.6,
-    "mean_ms": 189.02,
-    "fps": 5.3
-  },
-  "size_reduction_pct": 74.3
+  "models": {
+    "edge_baseline_yolov8n_224px": {
+      "architecture": "YOLOv8n (3.0M)",
+      "resolution": "224x224",
+      "quantization": "Dynamic INT8",
+      "size_mb": 3.17,
+      "clean_test_mAP50": 0.517,
+      "p50_ms": 6.36,
+      "p95_ms": 7.42,
+      "throughput_fps": 154.0,
+      "note": "Lightweight edge baseline with ultra-low latency but lower accuracy (51.7% mAP50, crazing collapsed at 2.5% AP50)."
+    },
+    "selected_yolov8s_640px_fp32": {
+      "architecture": "YOLOv8s (11.1M)",
+      "resolution": "640x640 (upsampled from 200x200)",
+      "quantization": "FP32",
+      "size_mb": 42.68,
+      "clean_test_mAP50": 0.559,
+      "clean_test_mAP50_95": 0.253,
+      "p50_ms": 69.85,
+      "p95_ms": 71.78,
+      "throughput_fps": 14.3
+    },
+    "selected_yolov8s_640px_dynamic_int8": {
+      "architecture": "YOLOv8s (11.1M)",
+      "resolution": "640x640 (upsampled from 200x200)",
+      "quantization": "Dynamic INT8",
+      "size_mb": 10.96,
+      "size_reduction_pct": 74.3,
+      "clean_test_mAP50": 0.443,
+      "clean_test_mAP50_95": 0.199,
+      "mAP50_drop_from_fp32": -0.116,
+      "p50_ms": 408.55,
+      "p95_ms": 416.34,
+      "throughput_fps": 2.4,
+      "speedup_factor": 0.17,
+      "analysis": "Dynamic quantization reduced file size by 74.3% but caused a severe 5.8x slowdown and 11.6% mAP50 degradation due to runtime activation quantization and fallback to FP32 on 2D convolutions."
+    },
+    "selected_yolov8s_640px_static_qdq_int8": {
+      "architecture": "YOLOv8s (11.1M)",
+      "resolution": "640x640 (upsampled from 200x200)",
+      "quantization": "Static QDQ INT8 (Conv quantized, FP32 detection head)",
+      "size_mb": 17.01,
+      "size_reduction_pct": 60.1,
+      "clean_test_mAP50": 0.505,
+      "clean_test_mAP50_95": 0.225,
+      "mAP50_drop_from_fp32": -0.054,
+      "p50_ms": 73.12,
+      "p95_ms": 75.03,
+      "throughput_fps": 13.6,
+      "speedup_factor": 0.96,
+      "analysis": "Static QDQ quantization with calibration data bakes activation scales offline into Conv layers while preserving the detection head in FP32, preventing the 416ms dynamic slowdown and retaining 50.5% mAP50 with a 60.1% footprint reduction."
+    }
+  }
 }

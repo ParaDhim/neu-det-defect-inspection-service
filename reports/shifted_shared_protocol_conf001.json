@@ -1,0 +1,149 @@
+{
+  "Run 11 PyTorch .pt (640px)": {
+    "mAP50": 30.06,
+    "mAP50_95": 15.34,
+    "crazing_AP50": 11.31,
+    "per_class_ap50": [
+      11.31,
+      13.94,
+      55.44,
+      26.39,
+      4.77,
+      68.54
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  },
+  "Run 11 ONNX FP32 (640px)": {
+    "mAP50": 24.08,
+    "mAP50_95": 8.71,
+    "crazing_AP50": 12.68,
+    "per_class_ap50": [
+      12.68,
+      9.91,
+      46.52,
+      29.38,
+      4.12,
+      41.89
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  },
+  "Run 11 ONNX Static QDQ INT8 (640px)": {
+    "mAP50": 20.62,
+    "mAP50_95": 7.4,
+    "crazing_AP50": 10.41,
+    "per_class_ap50": [
+      10.41,
+      7.09,
+      35.63,
+      21.96,
+      4.12,
+      44.53
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  },
+  "Run 11 ONNX Dynamic INT8 (640px)": {
+    "mAP50": 20.46,
+    "mAP50_95": 7.6,
+    "crazing_AP50": 10.58,
+    "per_class_ap50": [
+      10.58,
+      7.92,
+      41.19,
+      30.16,
+      2.43,
+      30.52
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  },
+  "Run 10 Edge PyTorch .pt (224px)": {
+    "mAP50": 26.15,
+    "mAP50_95": 10.35,
+    "crazing_AP50": 15.38,
+    "per_class_ap50": [
+      15.38,
+      13.27,
+      63.32,
+      24.93,
+      2.54,
+      37.46
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  },
+  "Run 10 Edge ONNX FP32 (224px)": {
+    "mAP50": 19.95,
+    "mAP50_95": 6.74,
+    "crazing_AP50": 12.07,
+    "per_class_ap50": [
+      12.07,
+      8.26,
+      46.11,
+      26.23,
+      3.83,
+      23.17
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  },
+  "Run 10 Edge ONNX INT8 (224px)": {
+    "mAP50": 21.14,
+    "mAP50_95": 7.57,
+    "crazing_AP50": 10.69,
+    "per_class_ap50": [
+      10.69,
+      6.31,
+      45.92,
+      31.08,
+      4.03,
+      28.8
+    ],
+    "class_names": [
+      "crazing",
+      "inclusion",
+      "patches",
+      "pitted_surface",
+      "rolled-in_scale",
+      "scratches"
+    ]
+  }
+}

@@ -118,13 +118,20 @@ def generate_deterministic_report(detections: list, image_meta: dict = None) -> 
         f"Dominant defects identified: {', '.join([f'{k} (x{v})' for k, v in counts.items()])}."
     )
 
+    if overall_status == "REJECT":
+        disposition = "QUARANTINE COIL"
+    elif overall_status == "HOLD / DOWNGRADE":
+        disposition = "HOLD / DOWNGRADE FOR SECONDARY PROCESSING"
+    else:
+        disposition = "PASS WITH ADVISORY / RE-INSPECT"
+
     return {
         "timestamp": timestamp,
         "overall_status": overall_status,
         "risk_level": risk_level,
         "defect_count": total_defects,
         "summary": summary_text,
-        "disposition": "QUARANTINE COIL" if overall_status == "REJECT" else "CONDITIONAL RELEASE / RE-INSPECT",
+        "disposition": disposition,
         "defects_breakdown": breakdown,
         "probable_root_causes": root_causes,
         "action_items": list(action_items),
@@ -132,19 +139,21 @@ def generate_deterministic_report(detections: list, image_meta: dict = None) -> 
     }
 
 
-def generate_llm_inspection_report(detections: list, api_key: str = None) -> dict:
+def generate_llm_inspection_report(detections: list, api_key: str = None, model_name: str = None) -> dict:
     """
     Generates a natural language inspection report.
-    If ANTHROPIC_API_KEY is available, calls Claude for advanced synthesis;
+    If an API key is available (ANTHROPIC_API_KEY or OPENAI_API_KEY), calls the configured LLM;
     otherwise seamlessly uses the deterministic metallurgical engine.
+    Model name is configurable via LLM_MODEL_NAME env var (defaults to claude-3-5-haiku-20241022).
     """
     anthropic_key = api_key or os.getenv("ANTHROPIC_API_KEY")
+    active_model = model_name or os.getenv("LLM_MODEL_NAME", "claude-haiku-5-5")
 
     # If no key, use domain deterministic engine
     if not anthropic_key:
         return generate_deterministic_report(detections)
 
-    # Optional Claude API synthesis
+    # Configurable LLM API synthesis
     try:
         headers = {
             "x-api-key": anthropic_key,
@@ -159,12 +168,12 @@ Generate a concise, professional JSON inspection report with the following keys:
 - overall_status: "PASS", "HOLD / DOWNGRADE", or "REJECT"
 - risk_level: "NEGLIGIBLE", "LOW", "ELEVATED", or "HIGH"
 - summary: 2-3 sentences plain-language factory summary
-- root_cause_hypothesis: metallurgical cause in rolling/casting
+- root_cause_hypothesis: hypothesis regarding metallurgical cause in rolling/casting (must be clearly stated as a hypothesis)
 - disposition_recommendation: immediate actionable instruction for line operators
 Return only valid JSON."""
 
         payload = {
-            "model": "claude-3-haiku-20240307",
+            "model": active_model,
             "max_tokens": 500,
             "messages": [{"role": "user", "content": prompt}],
         }
@@ -176,7 +185,7 @@ Return only valid JSON."""
             end = content.rfind("}") + 1
             if start != -1 and end != -1:
                 parsed = json.loads(content[start:end])
-                parsed["source"] = "claude-3-haiku"
+                parsed["source"] = f"llm_engine ({active_model})"
                 parsed["defect_count"] = len(detections)
                 return parsed
     except Exception as e:
