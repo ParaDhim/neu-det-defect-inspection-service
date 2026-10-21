@@ -1,0 +1,87 @@
+{
+  "seed": 42,
+  "classes": [
+    "crazing",
+    "inclusion",
+    "patches",
+    "pitted_surface",
+    "rolled-in_scale",
+    "scratches"
+  ],
+  "split_counts": {
+    "train": 1438,
+    "val": 180,
+    "test": 179
+  },
+  "class_counts_per_split": {
+    "images": {
+      "crazing": {
+        "train": 240,
+        "val": 30,
+        "test": 30
+      },
+      "inclusion": {
+        "train": 308,
+        "val": 39,
+        "test": 35
+      },
+      "patches": {
+        "train": 276,
+        "val": 33,
+        "test": 31
+      },
+      "pitted_surface": {
+        "train": 240,
+        "val": 30,
+        "test": 30
+      },
+      "rolled-in_scale": {
+        "train": 240,
+        "val": 30,
+        "test": 30
+      },
+      "scratches": {
+        "train": 239,
+        "val": 30,
+        "test": 30
+      }
+    },
+    "boxes": {
+      "crazing": {
+        "train": 551,
+        "val": 58,
+        "test": 79
+      },
+      "inclusion": {
+        "train": 827,
+        "val": 96,
+        "test": 87
+      },
+      "patches": {
+        "train": 705,
+        "val": 83,
+        "test": 87
+      },
+      "pitted_surface": {
+        "train": 349,
+        "val": 40,
+        "test": 41
+      },
+      "rolled-in_scale": {
+        "train": 511,
+        "val": 60,
+        "test": 57
+      },
+      "scratches": {
+        "train": 438,
+        "val": 52,
+        "test": 56
+      }
+    }
+  },
+  "total_boxes_per_split": {
+    "train": 3381,
+    "val": 389,
+    "test": 407
+  }
+}

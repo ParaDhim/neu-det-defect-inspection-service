@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  defect-inspection-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neu-det-defect-inspection:latest
+    container_name: defect-inspection-service
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=models/onnx/model_int8.onnx
+      - CONF_THRESHOLD=0.28
+      - IOU_THRESHOLD=0.45
+      - BASELINE_PATH=src/monitor/baseline_stats.json
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./models:/app/models:ro
+      - ./reports:/app/reports

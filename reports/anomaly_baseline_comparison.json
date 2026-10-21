@@ -1,0 +1,36 @@
+{
+  "paradigm_comparison": {
+    "supervised_yolo": {
+      "supervision": "Supervised (Requires labeled bounding boxes for all 6 defect types)",
+      "strengths": [
+        "Classifies specific defect taxonomy (crazing vs patches vs rolled-in scale)",
+        "Sub-pixel bounding box localization ready for robotic sorting",
+        "High mAP on known defects (90%+ mAP50)"
+      ],
+      "weaknesses": [
+        "Zero zero-shot capability on novel unseen metallurgical defect types",
+        "Requires high annotation cost (thousands of labeled boxes)"
+      ],
+      "recommended_use_case": "Standard production line with well-defined defect taxonomies and strict grading specs."
+    },
+    "unsupervised_patchcore": {
+      "supervision": "Unsupervised / One-Class (Trained strictly on defect-free 'golden' steel coils)",
+      "strengths": [
+        "Zero defect annotation required; learns only what normal steel looks like",
+        "Flags novel, unexpected, or ultra-rare defect morphologies as out-of-distribution",
+        "Outputs continuous spatial anomaly heatmap"
+      ],
+      "weaknesses": [
+        "Cannot classify defect type (e.g. cannot distinguish scratch from inclusion)",
+        "Sensitive to non-defect illumination variations unless robustly calibrated"
+      ],
+      "recommended_use_case": "New manufacturing lines, scarce failure data, or early-stage exploratory QA."
+    }
+  },
+  "evaluation_metrics": {
+    "test_samples_evaluated": 60,
+    "mean_patchcore_anomaly_score": 0.8123,
+    "p95_patchcore_anomaly_score": 0.8873,
+    "inference_device": "mps"
+  }
+}

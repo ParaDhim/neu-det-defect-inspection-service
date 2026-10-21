@@ -1,0 +1,33 @@
+{
+  "hardware": "CPU (Intel/Apple)",
+  "input_resolution": "224x224",
+  "fp32": {
+    "model_path": "models/onnx/model_fp32.onnx",
+    "size_mb": 12.02,
+    "mean_latency_ms": 6.72,
+    "std_latency_ms": 0.4,
+    "p50_ms": 6.67,
+    "p90_ms": 7.26,
+    "p95_ms": 7.34,
+    "p99_ms": 7.84,
+    "throughput_fps": 148.7,
+    "benchmark_runs": 200
+  },
+  "int8": {
+    "model_path": "models/onnx/model_int8.onnx",
+    "size_mb": 3.17,
+    "mean_latency_ms": 6.49,
+    "std_latency_ms": 0.39,
+    "p50_ms": 6.36,
+    "p90_ms": 7.09,
+    "p95_ms": 7.42,
+    "p99_ms": 7.73,
+    "throughput_fps": 154.0,
+    "benchmark_runs": 200
+  },
+  "comparison": {
+    "speedup_factor": 1.04,
+    "p95_latency_reduction_pct": -1.1,
+    "size_reduction_pct": 73.6
+  }
+}

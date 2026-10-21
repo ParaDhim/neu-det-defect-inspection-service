@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: defect-inspection-service
+  namespace: default
+  labels:
+    app: defect-inspection
+    tier: inference
+spec:
+  type: ClusterIP
+  selector:
+    app: defect-inspection
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP

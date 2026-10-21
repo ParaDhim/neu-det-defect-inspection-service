@@ -1,0 +1,68 @@
+{
+  "phase1_clean_stream": {
+    "status": "active",
+    "window_size": 40,
+    "total_observed": 40,
+    "drift_detected": true,
+    "trigger_retraining": false,
+    "details": {
+      "brightness": {
+        "ks_statistic": 0.1328,
+        "p_value": 0.4591397783878624,
+        "window_mean": 127.36,
+        "baseline_mean": 127.44,
+        "effect_size": 0.0,
+        "drift_flag": false
+      },
+      "contrast": {
+        "ks_statistic": 0.1832,
+        "p_value": 0.12861727396972425,
+        "window_mean": 24.41,
+        "baseline_mean": 26.79,
+        "effect_size": 0.15,
+        "drift_flag": false
+      },
+      "sharpness": {
+        "ks_statistic": 0.4107,
+        "p_value": 1.8975897213508158e-06,
+        "drift_flag": true
+      }
+    },
+    "reasons": [
+      "Sharpness distribution shift (p=1.8976e-06)"
+    ]
+  },
+  "phase2_shifted_stream": {
+    "status": "active",
+    "window_size": 40,
+    "total_observed": 80,
+    "drift_detected": true,
+    "trigger_retraining": true,
+    "details": {
+      "brightness": {
+        "ks_statistic": 0.3398,
+        "p_value": 0.00016323642723910697,
+        "window_mean": 95.68,
+        "baseline_mean": 127.44,
+        "effect_size": 0.72,
+        "drift_flag": true
+      },
+      "contrast": {
+        "ks_statistic": 0.151,
+        "p_value": 0.30561443592133225,
+        "window_mean": 22.14,
+        "baseline_mean": 26.79,
+        "effect_size": 0.3,
+        "drift_flag": false
+      },
+      "sharpness": {
+        "ks_statistic": 0.1873,
+        "p_value": 0.1140975893548009,
+        "drift_flag": false
+      }
+    },
+    "reasons": [
+      "Brightness drift: window mean=95.7 vs baseline=127.4 (p=1.6324e-04, effect=0.72)"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: defect-inspection-config
+  namespace: default
+  labels:
+    app: defect-inspection
+data:
+  MODEL_PATH: "models/onnx/model_int8.onnx"
+  CONF_THRESHOLD: "0.28"
+  IOU_THRESHOLD: "0.45"
+  BASELINE_PATH: "src/monitor/baseline_stats.json"
+  LOG_LEVEL: "INFO"
