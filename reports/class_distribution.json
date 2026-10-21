@@ -9,7 +9,7 @@
     "scratches"
   ],
   "split_counts": {
-    "train": 1438,
+    "train": 1441,
     "val": 180,
     "test": 179
   },
@@ -21,17 +21,17 @@
         "test": 30
       },
       "inclusion": {
-        "train": 308,
-        "val": 39,
-        "test": 35
+        "train": 307,
+        "val": 38,
+        "test": 37
       },
       "patches": {
-        "train": 276,
+        "train": 278,
         "val": 33,
         "test": 31
       },
       "pitted_surface": {
-        "train": 240,
+        "train": 241,
         "val": 30,
         "test": 30
       },
@@ -41,30 +41,30 @@
         "test": 30
       },
       "scratches": {
-        "train": 239,
+        "train": 240,
         "val": 30,
         "test": 30
       }
     },
     "boxes": {
       "crazing": {
-        "train": 551,
+        "train": 552,
         "val": 58,
         "test": 79
       },
       "inclusion": {
-        "train": 827,
-        "val": 96,
-        "test": 87
+        "train": 829,
+        "val": 93,
+        "test": 89
       },
       "patches": {
-        "train": 705,
-        "val": 83,
-        "test": 87
+        "train": 715,
+        "val": 82,
+        "test": 84
       },
       "pitted_surface": {
-        "train": 349,
-        "val": 40,
+        "train": 348,
+        "val": 43,
         "test": 41
       },
       "rolled-in_scale": {
@@ -73,15 +73,15 @@
         "test": 57
       },
       "scratches": {
-        "train": 438,
-        "val": 52,
-        "test": 56
+        "train": 442,
+        "val": 53,
+        "test": 53
       }
     }
   },
   "total_boxes_per_split": {
-    "train": 3381,
+    "train": 3397,
     "val": 389,
-    "test": 407
+    "test": 403
   }
 }

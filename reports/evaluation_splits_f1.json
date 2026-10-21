@@ -1,186 +1,187 @@
 {
-  "model": "models/champion_best.pt",
+  "model": "models/champion_v2_best.pt",
+  "imgsz": 640,
   "train": {
     "split": "train",
-    "precision": 0.6033,
-    "recall": 0.5694,
-    "f1_score": 0.5859,
-    "mAP50": 0.4906,
-    "mAP50_95": 0.2375,
+    "precision": 0.7512,
+    "recall": 0.7445,
+    "f1_score": 0.7478,
+    "mAP50": 0.6998,
+    "mAP50_95": 0.4163,
     "per_class": {
       "crazing": {
-        "precision": 0.625,
-        "recall": 0.0091,
-        "f1": 0.0179,
-        "ap50": 0.005
+        "precision": 0.6917,
+        "recall": 0.3176,
+        "f1": 0.4353,
+        "ap50": 0.2495
       },
       "inclusion": {
-        "precision": 0.6296,
-        "recall": 0.7461,
-        "f1": 0.6829,
-        "ap50": 0.6537
+        "precision": 0.7329,
+        "recall": 0.8913,
+        "f1": 0.8044,
+        "ap50": 0.8426
       },
       "patches": {
-        "precision": 0.7073,
-        "recall": 0.905,
-        "f1": 0.794,
-        "ap50": 0.8509
+        "precision": 0.8422,
+        "recall": 0.9496,
+        "f1": 0.8927,
+        "ap50": 0.9303
       },
       "pitted_surface": {
-        "precision": 0.7042,
-        "recall": 0.7163,
-        "f1": 0.7102,
-        "ap50": 0.6415
+        "precision": 0.8622,
+        "recall": 0.773,
+        "f1": 0.8152,
+        "ap50": 0.7586
       },
       "rolled-in_scale": {
-        "precision": 0.3049,
-        "recall": 0.2935,
-        "f1": 0.2991,
-        "ap50": 0.1426
+        "precision": 0.6335,
+        "recall": 0.5851,
+        "f1": 0.6083,
+        "ap50": 0.4925
       },
       "scratches": {
-        "precision": 0.6488,
-        "recall": 0.7466,
-        "f1": 0.6943,
-        "ap50": 0.6504
+        "precision": 0.7447,
+        "recall": 0.9502,
+        "f1": 0.835,
+        "ap50": 0.9252
       }
     }
   },
   "val": {
     "split": "val",
-    "precision": 0.5684,
-    "recall": 0.5336,
-    "f1_score": 0.5504,
-    "mAP50": 0.4866,
-    "mAP50_95": 0.223,
+    "precision": 0.7097,
+    "recall": 0.6752,
+    "f1_score": 0.692,
+    "mAP50": 0.6139,
+    "mAP50_95": 0.3536,
     "per_class": {
       "crazing": {
-        "precision": 0.2993,
-        "recall": 0.0103,
-        "f1": 0.02,
-        "ap50": 0.0075
+        "precision": 0.6667,
+        "recall": 0.2759,
+        "f1": 0.3902,
+        "ap50": 0.2107
       },
       "inclusion": {
-        "precision": 0.6451,
-        "recall": 0.7188,
-        "f1": 0.68,
-        "ap50": 0.6594
+        "precision": 0.7037,
+        "recall": 0.8172,
+        "f1": 0.7562,
+        "ap50": 0.7378
       },
       "patches": {
-        "precision": 0.7446,
-        "recall": 0.8795,
-        "f1": 0.8064,
-        "ap50": 0.8568
+        "precision": 0.7917,
+        "recall": 0.9268,
+        "f1": 0.8539,
+        "ap50": 0.902
       },
       "pitted_surface": {
-        "precision": 0.6856,
-        "recall": 0.725,
-        "f1": 0.7048,
-        "ap50": 0.6543
+        "precision": 0.7297,
+        "recall": 0.6279,
+        "f1": 0.675,
+        "ap50": 0.583
       },
       "rolled-in_scale": {
-        "precision": 0.3224,
-        "recall": 0.2333,
-        "f1": 0.2707,
-        "ap50": 0.1278
+        "precision": 0.5962,
+        "recall": 0.5167,
+        "f1": 0.5536,
+        "ap50": 0.3866
       },
       "scratches": {
-        "precision": 0.7131,
-        "recall": 0.6346,
-        "f1": 0.6716,
-        "ap50": 0.614
+        "precision": 0.7705,
+        "recall": 0.8868,
+        "f1": 0.8246,
+        "ap50": 0.8636
       }
     }
   },
   "test_clean": {
     "split": "test",
-    "precision": 0.5442,
-    "recall": 0.5352,
-    "f1_score": 0.5397,
-    "mAP50": 0.5002,
-    "mAP50_95": 0.2315,
+    "precision": 0.6984,
+    "recall": 0.6931,
+    "f1_score": 0.6958,
+    "mAP50": 0.6379,
+    "mAP50_95": 0.3509,
     "per_class": {
       "crazing": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1": 0.0,
-        "ap50": 0.0
+        "precision": 0.6,
+        "recall": 0.2658,
+        "f1": 0.3684,
+        "ap50": 0.2044
       },
       "inclusion": {
-        "precision": 0.7051,
-        "recall": 0.7586,
-        "f1": 0.7309,
-        "ap50": 0.737
+        "precision": 0.621,
+        "recall": 0.8652,
+        "f1": 0.723,
+        "ap50": 0.8006
       },
       "patches": {
-        "precision": 0.8103,
-        "recall": 0.8851,
-        "f1": 0.8461,
-        "ap50": 0.8529
+        "precision": 0.8276,
+        "recall": 0.8571,
+        "f1": 0.8421,
+        "ap50": 0.8373
       },
       "pitted_surface": {
-        "precision": 0.8016,
-        "recall": 0.7317,
-        "f1": 0.765,
-        "ap50": 0.715
+        "precision": 0.7949,
+        "recall": 0.7561,
+        "f1": 0.775,
+        "ap50": 0.7262
       },
       "rolled-in_scale": {
-        "precision": 0.3456,
-        "recall": 0.193,
-        "f1": 0.2477,
-        "ap50": 0.1428
+        "precision": 0.5472,
+        "recall": 0.5088,
+        "f1": 0.5273,
+        "ap50": 0.3873
       },
       "scratches": {
-        "precision": 0.6026,
-        "recall": 0.6429,
-        "f1": 0.6221,
-        "ap50": 0.5532
+        "precision": 0.8,
+        "recall": 0.9057,
+        "f1": 0.8496,
+        "ap50": 0.8714
       }
     }
   },
   "test_shifted": {
-    "split": "val",
-    "precision": 0.4698,
-    "recall": 0.2318,
-    "f1_score": 0.3104,
-    "mAP50": 0.1855,
-    "mAP50_95": 0.0651,
+    "split": "test",
+    "precision": 0.4604,
+    "recall": 0.2924,
+    "f1_score": 0.3577,
+    "mAP50": 0.2315,
+    "mAP50_95": 0.1276,
     "per_class": {
       "crazing": {
-        "precision": 0.5,
-        "recall": 0.0127,
-        "f1": 0.0247,
-        "ap50": 0.0075
+        "precision": 0.5714,
+        "recall": 0.0506,
+        "f1": 0.093,
+        "ap50": 0.0367
       },
       "inclusion": {
-        "precision": 0.6667,
-        "recall": 0.092,
-        "f1": 0.1616,
-        "ap50": 0.0939
+        "precision": 0.4783,
+        "recall": 0.1236,
+        "f1": 0.1964,
+        "ap50": 0.1004
       },
       "patches": {
-        "precision": 0.5854,
-        "recall": 0.5517,
-        "f1": 0.568,
-        "ap50": 0.4321
+        "precision": 0.5846,
+        "recall": 0.4524,
+        "f1": 0.5101,
+        "ap50": 0.4159
       },
       "pitted_surface": {
-        "precision": 0.3333,
-        "recall": 0.3415,
-        "f1": 0.3373,
-        "ap50": 0.2236
+        "precision": 0.1905,
+        "recall": 0.4878,
+        "f1": 0.274,
+        "ap50": 0.2424
       },
       "rolled-in_scale": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1": 0.0,
-        "ap50": 0.0
+        "precision": 0.25,
+        "recall": 0.0175,
+        "f1": 0.0328,
+        "ap50": 0.0037
       },
       "scratches": {
-        "precision": 0.7333,
-        "recall": 0.3929,
-        "f1": 0.5116,
-        "ap50": 0.356
+        "precision": 0.6875,
+        "recall": 0.6226,
+        "f1": 0.6535,
+        "ap50": 0.5902
       }
     }
   }

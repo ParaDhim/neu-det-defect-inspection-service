@@ -1,0 +1,98 @@
+[
+  {
+    "run_name": "11_yolov8s_640_heavy_aug",
+    "label": "YOLOv8s 640px Heavy Aug (RTX A6000 GPU Champion)",
+    "model": "yolov8s.pt",
+    "architecture": "YOLOv8s (11.1M)",
+    "imgsz": 640,
+    "epochs": 80,
+    "clean_mAP50": 0.6379,
+    "clean_mAP50_95": 0.3509,
+    "clean_precision": 0.6984,
+    "clean_recall": 0.6931,
+    "clean_f1": 0.6958,
+    "shifted_mAP50": 0.2315,
+    "shifted_mAP50_95": 0.1276,
+    "shifted_precision": 0.4604,
+    "shifted_recall": 0.2924,
+    "shifted_f1": 0.3577,
+    "mAP50_drop": 0.4064,
+    "rel_drop_pct": 63.7,
+    "per_class_clean": {
+      "crazing": {
+        "precision": 0.6,
+        "recall": 0.2658,
+        "f1": 0.3684,
+        "ap50": 0.2044
+      },
+      "inclusion": {
+        "precision": 0.621,
+        "recall": 0.8652,
+        "f1": 0.723,
+        "ap50": 0.8006
+      },
+      "patches": {
+        "precision": 0.8276,
+        "recall": 0.8571,
+        "f1": 0.8421,
+        "ap50": 0.8373
+      },
+      "pitted_surface": {
+        "precision": 0.7949,
+        "recall": 0.7561,
+        "f1": 0.775,
+        "ap50": 0.7262
+      },
+      "rolled-in_scale": {
+        "precision": 0.5472,
+        "recall": 0.5088,
+        "f1": 0.5273,
+        "ap50": 0.3873
+      },
+      "scratches": {
+        "precision": 0.8,
+        "recall": 0.9057,
+        "f1": 0.8496,
+        "ap50": 0.8714
+      }
+    },
+    "per_class_shifted": {
+      "crazing": {
+        "precision": 0.5714,
+        "recall": 0.0506,
+        "f1": 0.093,
+        "ap50": 0.0367
+      },
+      "inclusion": {
+        "precision": 0.4783,
+        "recall": 0.1236,
+        "f1": 0.1964,
+        "ap50": 0.1004
+      },
+      "patches": {
+        "precision": 0.5846,
+        "recall": 0.4524,
+        "f1": 0.5101,
+        "ap50": 0.4159
+      },
+      "pitted_surface": {
+        "precision": 0.1905,
+        "recall": 0.4878,
+        "f1": 0.274,
+        "ap50": 0.2424
+      },
+      "rolled-in_scale": {
+        "precision": 0.25,
+        "recall": 0.0175,
+        "f1": 0.0328,
+        "ap50": 0.0037
+      },
+      "scratches": {
+        "precision": 0.6875,
+        "recall": 0.6226,
+        "f1": 0.6535,
+        "ap50": 0.5902
+      }
+    }
+  }
+]

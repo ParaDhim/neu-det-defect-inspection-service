@@ -31,7 +31,7 @@ COLORS = [
 ]
 
 
-def compute_f1_and_metrics(model: YOLO, data_yaml: str, split: str = "test", imgsz: int = 224, conf: float = 0.28):
+def compute_f1_and_metrics(model: YOLO, data_yaml: str, split: str = "test", imgsz: int = 640, conf: float = 0.28):
     """Evaluates model and computes Precision, Recall, F1 score, and mAP."""
     metrics = model.val(data=data_yaml, split=split, imgsz=imgsz, conf=conf, verbose=False)
 
@@ -74,6 +74,7 @@ def generate_qualitative_detection_grid(
     model: YOLO,
     test_img_dir: str = "data/processed/neu-det/images/test",
     output_path: str = "reports/qualitative_detections_grid.png",
+    imgsz: int = 640,
 ):
     """
     Renders high-resolution qualitative detection examples across all 6 defect classes
@@ -96,8 +97,8 @@ def generate_qualitative_detection_grid(
             continue
 
         # Run inference
-        results = model.predict(sample_path, conf=0.25, imgsz=224, verbose=False)
-        rendered_bgr = results[0].plot(line_width=2, font_size=1)
+        results = model.predict(sample_path, conf=0.25, imgsz=imgsz, verbose=False)
+        rendered_bgr = results[0].plot(line_width=2)
         rendered_rgb = cv2.cvtColor(rendered_bgr, cv2.COLOR_BGR2RGB)
 
         num_dets = len(results[0].boxes)
@@ -118,6 +119,7 @@ def generate_lighting_shift_visual_comparison(
     clean_dir: str = "data/processed/neu-det/images/test",
     shifted_dir: str = "data/processed/neu-det-shifted/images/test",
     output_path: str = "reports/lighting_shift_visual_comparison.png",
+    imgsz: int = 640,
 ):
     """
     Renders side-by-side comparison of clean vs harsh lighting shifted steel coils with detections.
@@ -141,10 +143,10 @@ def generate_lighting_shift_visual_comparison(
             clean_img_path = os.path.join(clean_dir, f"{stem}.jpg")
             shifted_img_path = os.path.join(shifted_dir, f"{stem}.jpg")
 
-        res_clean = model.predict(clean_img_path, conf=0.25, imgsz=224, verbose=False)
+        res_clean = model.predict(clean_img_path, conf=0.25, imgsz=imgsz, verbose=False)
         plot_clean = cv2.cvtColor(res_clean[0].plot(line_width=2), cv2.COLOR_BGR2RGB)
 
-        res_shift = model.predict(shifted_img_path, conf=0.25, imgsz=224, verbose=False)
+        res_shift = model.predict(shifted_img_path, conf=0.25, imgsz=imgsz, verbose=False)
         plot_shift = cv2.cvtColor(res_shift[0].plot(line_width=2), cv2.COLOR_BGR2RGB)
 
         axes[row, 0].imshow(plot_clean)

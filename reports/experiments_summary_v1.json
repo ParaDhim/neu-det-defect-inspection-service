@@ -1,0 +1,170 @@
+[
+  {
+    "run_name": "01_baseline_yolov8n_imgsz200",
+    "architecture": "YOLOv8n",
+    "resolution": "200x200",
+    "augmentation": "None (Clean baseline)",
+    "clean_mAP50": 0.66226,
+    "clean_mAP50_95": 0.3412,
+    "shifted_mAP50": 0.17882,
+    "shifted_mAP50_95": 0.0715,
+    "mAP50_drop": 0.48344,
+    "rel_drop_pct": 73.0,
+    "clean_per_class": {
+      "crazing": {"AP50": 0.198, "AP50_95": 0.062},
+      "inclusion": {"AP50": 0.764, "AP50_95": 0.381},
+      "patches": {"AP50": 0.912, "AP50_95": 0.554},
+      "pitted_surface": {"AP50": 0.781, "AP50_95": 0.449},
+      "rolled-in_scale": {"AP50": 0.442, "AP50_95": 0.148},
+      "scratches": {"AP50": 0.876, "AP50_95": 0.453}
+    },
+    "shifted_per_class": {
+      "crazing": {"AP50": 0.021, "AP50_95": 0.007},
+      "inclusion": {"AP50": 0.081, "AP50_95": 0.031},
+      "patches": {"AP50": 0.395, "AP50_95": 0.168},
+      "pitted_surface": {"AP50": 0.218, "AP50_95": 0.091},
+      "rolled-in_scale": {"AP50": 0.005, "AP50_95": 0.001},
+      "scratches": {"AP50": 0.353, "AP50_95": 0.131}
+    }
+  },
+  {
+    "run_name": "02_baseline_yolov8n_imgsz320",
+    "architecture": "YOLOv8n",
+    "resolution": "320x320",
+    "augmentation": "None (Clean baseline high-res)",
+    "clean_mAP50": 0.62759,
+    "clean_mAP50_95": 0.3185,
+    "shifted_mAP50": 0.14770,
+    "shifted_mAP50_95": 0.0652,
+    "mAP50_drop": 0.47989,
+    "rel_drop_pct": 76.5,
+    "clean_per_class": {
+      "crazing": {"AP50": 0.182, "AP50_95": 0.055},
+      "inclusion": {"AP50": 0.741, "AP50_95": 0.362},
+      "patches": {"AP50": 0.895, "AP50_95": 0.521},
+      "pitted_surface": {"AP50": 0.752, "AP50_95": 0.419},
+      "rolled-in_scale": {"AP50": 0.384, "AP50_95": 0.132},
+      "scratches": {"AP50": 0.812, "AP50_95": 0.422}
+    },
+    "shifted_per_class": {
+      "crazing": {"AP50": 0.018, "AP50_95": 0.005},
+      "inclusion": {"AP50": 0.072, "AP50_95": 0.028},
+      "patches": {"AP50": 0.341, "AP50_95": 0.142},
+      "pitted_surface": {"AP50": 0.198, "AP50_95": 0.081},
+      "rolled-in_scale": {"AP50": 0.004, "AP50_95": 0.001},
+      "scratches": {"AP50": 0.253, "AP50_95": 0.104}
+    }
+  },
+  {
+    "run_name": "03_robust_yolov8n_light_aug",
+    "architecture": "YOLOv8n",
+    "resolution": "224x224",
+    "augmentation": "Light (hsv_v=0.2, mosaic=0.5)",
+    "clean_mAP50": 0.62925,
+    "clean_mAP50_95": 0.3204,
+    "shifted_mAP50": 0.14554,
+    "shifted_mAP50_95": 0.0641,
+    "mAP50_drop": 0.48371,
+    "rel_drop_pct": 76.9,
+    "clean_per_class": {
+      "crazing": {"AP50": 0.165, "AP50_95": 0.051},
+      "inclusion": {"AP50": 0.748, "AP50_95": 0.370},
+      "patches": {"AP50": 0.901, "AP50_95": 0.533},
+      "pitted_surface": {"AP50": 0.761, "AP50_95": 0.428},
+      "rolled-in_scale": {"AP50": 0.378, "AP50_95": 0.129},
+      "scratches": {"AP50": 0.823, "AP50_95": 0.411}
+    },
+    "shifted_per_class": {
+      "crazing": {"AP50": 0.015, "AP50_95": 0.004},
+      "inclusion": {"AP50": 0.068, "AP50_95": 0.026},
+      "patches": {"AP50": 0.312, "AP50_95": 0.135},
+      "pitted_surface": {"AP50": 0.201, "AP50_95": 0.084},
+      "rolled-in_scale": {"AP50": 0.003, "AP50_95": 0.001},
+      "scratches": {"AP50": 0.274, "AP50_95": 0.115}
+    }
+  },
+  {
+    "run_name": "04_robust_yolov8n_heavy_aug",
+    "architecture": "YOLOv8n",
+    "resolution": "224x224",
+    "augmentation": "Heavy (hsv_v=0.6, scale=0.5, mosaic=1.0)",
+    "clean_mAP50": 0.59839,
+    "clean_mAP50_95": 0.30466,
+    "shifted_mAP50": 0.15093,
+    "shifted_mAP50_95": 0.07032,
+    "mAP50_drop": 0.44746,
+    "rel_drop_pct": 74.8,
+    "clean_per_class": {
+      "crazing": {"AP50": 0.1157, "AP50_95": 0.0412},
+      "inclusion": {"AP50": 0.7283, "AP50_95": 0.3571},
+      "patches": {"AP50": 0.8794, "AP50_95": 0.5394},
+      "pitted_surface": {"AP50": 0.7672, "AP50_95": 0.4379},
+      "rolled-in_scale": {"AP50": 0.3067, "AP50_95": 0.0983},
+      "scratches": {"AP50": 0.7931, "AP50_95": 0.3541}
+    },
+    "shifted_per_class": {
+      "crazing": {"AP50": 0.0167, "AP50_95": 0.0095},
+      "inclusion": {"AP50": 0.0650, "AP50_95": 0.0294},
+      "patches": {"AP50": 0.2496, "AP50_95": 0.1253},
+      "pitted_surface": {"AP50": 0.2306, "AP50_95": 0.1023},
+      "rolled-in_scale": {"AP50": 0.0030, "AP50_95": 0.0006},
+      "scratches": {"AP50": 0.3408, "AP50_95": 0.1548}
+    }
+  },
+  {
+    "run_name": "05_robust_yolov8s_heavy_aug",
+    "architecture": "YOLOv8s",
+    "resolution": "224x224",
+    "augmentation": "Heavy + Capacity Scaling (11.1M params)",
+    "clean_mAP50": 0.56344,
+    "clean_mAP50_95": 0.27045,
+    "shifted_mAP50": 0.20816,
+    "shifted_mAP50_95": 0.08568,
+    "mAP50_drop": 0.35527,
+    "rel_drop_pct": 63.1,
+    "clean_per_class": {
+      "crazing": {"AP50": 0.1778, "AP50_95": 0.0520},
+      "inclusion": {"AP50": 0.6600, "AP50_95": 0.3273},
+      "patches": {"AP50": 0.9091, "AP50_95": 0.5152},
+      "pitted_surface": {"AP50": 0.5709, "AP50_95": 0.3311},
+      "rolled-in_scale": {"AP50": 0.3093, "AP50_95": 0.1152},
+      "scratches": {"AP50": 0.7536, "AP50_95": 0.2819}
+    },
+    "shifted_per_class": {
+      "crazing": {"AP50": 0.0581, "AP50_95": 0.0163},
+      "inclusion": {"AP50": 0.0920, "AP50_95": 0.0525},
+      "patches": {"AP50": 0.4647, "AP50_95": 0.2183},
+      "pitted_surface": {"AP50": 0.1950, "AP50_95": 0.0668},
+      "rolled-in_scale": {"AP50": 0.0038, "AP50_95": 0.0008},
+      "scratches": {"AP50": 0.4354, "AP50_95": 0.1594}
+    }
+  },
+  {
+    "run_name": "10_champion_yolov8n_production",
+    "architecture": "YOLOv8n",
+    "resolution": "224x224",
+    "augmentation": "AdamW + Tuned Photometric Augmentation",
+    "clean_mAP50": 0.51713,
+    "clean_mAP50_95": 0.23832,
+    "shifted_mAP50": 0.18820,
+    "shifted_mAP50_95": 0.06613,
+    "mAP50_drop": 0.32892,
+    "rel_drop_pct": 63.6,
+    "clean_per_class": {
+      "crazing": {"AP50": 0.0250, "AP50_95": 0.0048},
+      "inclusion": {"AP50": 0.7427, "AP50_95": 0.3170},
+      "patches": {"AP50": 0.8825, "AP50_95": 0.4487},
+      "pitted_surface": {"AP50": 0.7150, "AP50_95": 0.4127},
+      "rolled-in_scale": {"AP50": 0.1494, "AP50_95": 0.0471},
+      "scratches": {"AP50": 0.5882, "AP50_95": 0.1997}
+    },
+    "shifted_per_class": {
+      "crazing": {"AP50": 0.0167, "AP50_95": 0.0039},
+      "inclusion": {"AP50": 0.0939, "AP50_95": 0.0440},
+      "patches": {"AP50": 0.4321, "AP50_95": 0.1585},
+      "pitted_surface": {"AP50": 0.2306, "AP50_95": 0.0810},
+      "rolled-in_scale": {"AP50": 0.0000, "AP50_95": 0.0000},
+      "scratches": {"AP50": 0.3560, "AP50_95": 0.1094}
+    }
+  }
+]

@@ -41,7 +41,7 @@ def setup_mlflow(experiment_name: str = "neu-det-defect-inspection", tracking_ur
             tags={
                 "project": "steel-surface-defect-inspection",
                 "framework": "ultralytics-yolov8",
-                "hardware": "apple-silicon-mps" if torch.backends.mps.is_available() else "cpu",
+                "hardware": "cuda-gpu" if torch.cuda.is_available() else ("apple-silicon-mps" if torch.backends.mps.is_available() else "cpu"),
             },
         )
     else:
@@ -125,7 +125,7 @@ def run_experiment(
     flipud: float = 0.5,
     mosaic: float = 1.0,
     erasing: float = 0.0,
-    device: str = "mps" if torch.backends.mps.is_available() else "cpu",
+    device = 0 if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu"),
     clean_data_yaml: str = "data/processed/neu-det/dataset.yaml",
     shifted_data_yaml: str = "data/processed/neu-det-shifted/dataset_shifted.yaml",
     tags: dict = None,
