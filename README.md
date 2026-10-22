@@ -1,7 +1,7 @@
 # Industrial Steel Surface Defect Inspection Service
 
 [![CI/CD Pipeline](https://github.com/ParaDhim/neu-det-defect-inspection-service/actions/workflows/ci.yml/badge.svg)](https://github.com/ParaDhim/neu-det-defect-inspection-service/actions)
-[![uv Powered](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![uv](https://img.shields.io/badge/Package_Manager-uv-DE5FE9.svg)](https://github.com/astral-sh/uv)
 [![Python 3.10 | 3.11](https://img.shields.io/badge/Python-3.10%20%7C%203.11-blue.svg)](https://www.python.org/)
 [![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-FP32_224px-green.svg)](https://onnxruntime.ai/)
 [![FastAPI](https://img.shields.io/badge/Serving-FastAPI_0.104+-teal.svg)](https://fastapi.tiangolo.com/)
