@@ -27,14 +27,17 @@ class ONNXPredictor:
 
     def __init__(
         self,
-        model_path: str = "models/onnx/model_int8.onnx",
-        conf_threshold: float = 0.28,
+        model_path: str = "models/onnx/model_edge_fp32.onnx",
+        conf_threshold: float = 0.22,
+        class_conf_thresholds: dict = None,
         iou_threshold: float = 0.45,
         imgsz: int = 224,
         num_threads: int = 4,
     ):
         self.model_path = model_path
         self.conf_threshold = conf_threshold
+        # Optional per-class overrides, e.g. {"crazing": 0.112}; other classes use conf_threshold.
+        self.class_conf_thresholds = dict(class_conf_thresholds or {})
         self.iou_threshold = iou_threshold
         self.imgsz = imgsz
         self.classes = CLASSES
@@ -118,7 +121,10 @@ class ONNXPredictor:
         class_ids = np.argmax(scores, axis=1)
         confidences = np.max(scores, axis=1)
 
-        mask = confidences >= self.conf_threshold
+        per_class_thr = np.array(
+            [self.class_conf_thresholds.get(name, self.conf_threshold) for name in self.classes], dtype=np.float32
+        )
+        mask = confidences >= per_class_thr[class_ids]
         boxes = boxes[mask]
         confidences = confidences[mask]
         class_ids = class_ids[mask]
@@ -145,7 +151,7 @@ class ONNXPredictor:
 
         boxes_xywh = np.stack([x1, y1, x2 - x1, y2 - y1], axis=1).tolist()
         indices = cv2.dnn.NMSBoxes(
-            boxes_xywh, confidences.tolist(), score_threshold=self.conf_threshold, nms_threshold=self.iou_threshold
+            boxes_xywh, confidences.tolist(), score_threshold=float(per_class_thr.min()), nms_threshold=self.iou_threshold
         )
 
         detections = []

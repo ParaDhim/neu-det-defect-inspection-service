@@ -13,8 +13,42 @@ from pathlib import Path
 import numpy as np
 import onnx
 import onnxruntime as ort
-from onnxruntime.quantization import quantize_dynamic, QuantType
+from onnxruntime.quantization import (
+    quantize_dynamic,
+    quantize_static,
+    CalibrationDataReader,
+    QuantFormat,
+    QuantType,
+    CalibrationMethod,
+)
+import cv2
 from ultralytics import YOLO
+
+
+class SteelDefectCalibrationDataReader(CalibrationDataReader):
+    """Feeds preprocessed calibration images to ONNX Runtime static quantizer."""
+
+    def __init__(self, image_dir: str = "data/processed/neu-det/images/train", imgsz: int = 640, max_samples: int = 50):
+        self.image_paths = sorted(list(Path(image_dir).glob("*.jpg")))[:max_samples]
+        self.imgsz = imgsz
+        self.enum_data = iter(self.image_paths)
+        print(f"Calibration data reader initialized with {len(self.image_paths)} images at {imgsz}x{imgsz}")
+
+    def get_next(self):
+        try:
+            img_path = next(self.enum_data)
+        except StopIteration:
+            return None
+
+        img = cv2.imread(str(img_path))
+        if img is None:
+            return None
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img = cv2.resize(img, (self.imgsz, self.imgsz))
+        img = img.astype(np.float32) / 255.0
+        img = np.transpose(img, (2, 0, 1))
+        img = np.expand_dims(img, axis=0)
+        return {"images": img}
 
 
 def export_to_onnx(
@@ -70,6 +104,37 @@ def quantize_to_int8(
     print(f"Quantization complete: {output_int8_path}")
     print(f"Size reduction: {size_fp32:.2f} MB -> {size_int8:.2f} MB (-{reduction:.1f}%)")
     return output_int8_path
+
+
+def quantize_static_qdq(
+    fp32_onnx_path: str = "models/onnx/model_fp32.onnx",
+    output_qdq_path: str = "models/onnx/model_qdq_int8.onnx",
+    calibration_image_dir: str = "data/processed/neu-det/images/train",
+    imgsz: int = 640,
+    max_samples: int = 50,
+) -> str:
+    """Performs static (QDQ) quantization with calibration data for CPU acceleration."""
+    print(f"Quantizing {fp32_onnx_path} to static QDQ INT8 with calibration...")
+    reader = SteelDefectCalibrationDataReader(
+        image_dir=calibration_image_dir,
+        imgsz=imgsz,
+        max_samples=max_samples,
+    )
+    quantize_static(
+        model_input=fp32_onnx_path,
+        model_output=output_qdq_path,
+        calibration_data_reader=reader,
+        quant_format=QuantFormat.QDQ,
+        activation_type=QuantType.QUInt8,
+        weight_type=QuantType.QInt8,
+        calibrate_method=CalibrationMethod.MinMax,
+    )
+    size_fp32 = os.path.getsize(fp32_onnx_path) / (1024 * 1024)
+    size_qdq = os.path.getsize(output_qdq_path) / (1024 * 1024)
+    reduction = ((size_fp32 - size_qdq) / size_fp32) * 100.0
+    print(f"Static QDQ complete: {output_qdq_path}")
+    print(f"Size reduction: {size_fp32:.2f} MB -> {size_qdq:.2f} MB (-{reduction:.1f}%)")
+    return output_qdq_path
 
 
 def benchmark_onnx_cpu(

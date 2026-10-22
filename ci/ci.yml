@@ -37,8 +37,8 @@ jobs:
 
       - name: Run Pytest Test Suite via uv run
         env:
-          MODEL_PATH: "models/onnx/model_int8.onnx"
-          CONF_THRESHOLD: "0.28"
+          MODEL_PATH: "models/onnx/model_edge_fp32.onnx"
+          CONF_THRESHOLD: "0.22"
           BASELINE_PATH: "src/monitor/baseline_stats.json"
         run: |
           uv run pytest -v tests/ --durations=10

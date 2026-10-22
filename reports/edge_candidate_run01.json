@@ -1,0 +1,114 @@
+{
+  "fp32": {
+    "bench": {
+      "model_path": "models/onnx/run01/model_fp32.onnx",
+      "size_mb": 12.05,
+      "mean_latency_ms": 5.23,
+      "std_latency_ms": 0.59,
+      "p50_ms": 5.17,
+      "p90_ms": 5.25,
+      "p95_ms": 5.28,
+      "p99_ms": 5.39,
+      "throughput_fps": 191.2,
+      "benchmark_runs": 200
+    },
+    "val": {
+      "mAP50": 72.74,
+      "mAP50_95": 40.98,
+      "per_class_ap50": [
+        44.94,
+        82.83,
+        94.03,
+        68.42,
+        52.15,
+        94.07
+      ]
+    },
+    "test": {
+      "mAP50": 74.18,
+      "mAP50_95": 40.44,
+      "per_class_ap50": [
+        38.6,
+        83.32,
+        93.61,
+        91.64,
+        46.78,
+        91.12
+      ]
+    },
+    "shifted": {
+      "mAP50": 26.8,
+      "mAP50_95": 12.64,
+      "per_class_ap50": [
+        16.79,
+        10.53,
+        57.57,
+        32.08,
+        6.22,
+        37.62
+      ]
+    }
+  },
+  "int8": {
+    "bench": {
+      "model_path": "models/onnx/run01/model_int8.onnx",
+      "size_mb": 3.18,
+      "mean_latency_ms": 28.4,
+      "std_latency_ms": 0.41,
+      "p50_ms": 28.32,
+      "p90_ms": 28.59,
+      "p95_ms": 28.86,
+      "p99_ms": 29.36,
+      "throughput_fps": 35.2,
+      "benchmark_runs": 200
+    },
+    "val": {
+      "mAP50": 72.58,
+      "mAP50_95": 40.25,
+      "per_class_ap50": [
+        45.76,
+        81.63,
+        93.66,
+        69.19,
+        52.28,
+        92.95
+      ]
+    },
+    "test": {
+      "mAP50": 73.52,
+      "mAP50_95": 40.54,
+      "per_class_ap50": [
+        36.07,
+        83.54,
+        93.53,
+        89.94,
+        48.4,
+        89.65
+      ]
+    },
+    "shifted": {
+      "mAP50": 25.75,
+      "mAP50_95": 12.68,
+      "per_class_ap50": [
+        17.75,
+        9.74,
+        54.99,
+        32.24,
+        3.33,
+        36.47
+      ]
+    }
+  },
+  "run10_int8_bench_same_session": {
+    "model_path": "models/onnx/model_v1_int8.onnx",
+    "size_mb": 3.17,
+    "mean_latency_ms": 30.23,
+    "std_latency_ms": 0.51,
+    "p50_ms": 30.14,
+    "p90_ms": 30.51,
+    "p95_ms": 31.22,
+    "p99_ms": 31.92,
+    "throughput_fps": 33.1,
+    "benchmark_runs": 200
+  }
+}

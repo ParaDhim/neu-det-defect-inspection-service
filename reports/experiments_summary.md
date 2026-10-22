@@ -1,3 +1,5 @@
+> **STALE:** produced under an older mixed protocol (conf=0.25, rect=True). Use `reports/unified_eval_conf001.json` and `reports/experiments_comparison_master.md`.
+
 ## Comprehensive Metallurgical Experiment Tracking Leaderboard
 
 > **Note:** Preserves all historical baseline experiments (Runs 01–10) alongside the new GPU-accelerated state-of-the-art champion (Run 11) trained on the **NVIDIA RTX A6000 (48 GB VRAM)**.

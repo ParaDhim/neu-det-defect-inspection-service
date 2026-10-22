@@ -10,8 +10,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - MODEL_PATH=models/onnx/model_int8.onnx
-      - CONF_THRESHOLD=0.28
+      - MODEL_PATH=models/onnx/model_edge_fp32.onnx
+      - CONF_THRESHOLD=0.22
+      - CLASS_CONF_THRESHOLDS={"crazing":0.112}
       - IOU_THRESHOLD=0.45
       - BASELINE_PATH=src/monitor/baseline_stats.json
     restart: unless-stopped

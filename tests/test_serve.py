@@ -83,3 +83,22 @@ def test_metrics_endpoint(client):
     assert resp.status_code == 200
     assert "inspection_requests_total" in resp.text
     assert "inspection_uptime_seconds" in resp.text
+
+
+def test_per_class_confidence_threshold():
+    """A crazing score of 0.15 survives the lowered crazing threshold but not the global 0.22."""
+    from src.serve.predictor import ONNXPredictor
+
+    def raw_output():
+        out = np.zeros((1, 10, 2), dtype=np.float32)  # (batch, 4 box + 6 classes, anchors)
+        out[0, :4, 0] = [100, 100, 40, 40]; out[0, 4 + 0, 0] = 0.15  # crazing, 0.15
+        out[0, :4, 1] = [30, 30, 20, 20]; out[0, 4 + 5, 1] = 0.15  # scratches, 0.15
+        return out
+
+    kwargs = dict(model_path="does_not_exist.onnx", conf_threshold=0.22)
+    plain = ONNXPredictor(**kwargs).postprocess(raw_output(), (224, 224), 1.0, (0, 0))
+    tuned = ONNXPredictor(class_conf_thresholds={"crazing": 0.112}, **kwargs).postprocess(
+        raw_output(), (224, 224), 1.0, (0, 0)
+    )
+    assert plain == []
+    assert [d["class_name"] for d in tuned] == ["crazing"]

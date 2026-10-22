@@ -28,8 +28,10 @@ from src.monitor.drift import DriftMonitor
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("defect-inspection-service")
 
-MODEL_PATH = os.getenv("MODEL_PATH", "models/onnx/model_int8.onnx")
-CONF_THRESHOLD = float(os.getenv("CONF_THRESHOLD", "0.28"))
+MODEL_PATH = os.getenv("MODEL_PATH", "models/onnx/model_edge_fp32.onnx")
+CONF_THRESHOLD = float(os.getenv("CONF_THRESHOLD", "0.22"))
+# Per-class overrides tuned on the validation split (crazing needs a lower threshold), JSON object.
+CLASS_CONF_THRESHOLDS = json.loads(os.getenv("CLASS_CONF_THRESHOLDS", '{"crazing": 0.112}'))
 IOU_THRESHOLD = float(os.getenv("IOU_THRESHOLD", "0.45"))
 BASELINE_PATH = os.getenv("BASELINE_PATH", "src/monitor/baseline_stats.json")
 
@@ -51,6 +53,7 @@ def get_predictor() -> ONNXPredictor:
         _predictor = ONNXPredictor(
             model_path=MODEL_PATH,
             conf_threshold=CONF_THRESHOLD,
+            class_conf_thresholds=CLASS_CONF_THRESHOLDS,
             iou_threshold=IOU_THRESHOLD,
         )
     return _predictor
@@ -127,6 +130,7 @@ def health_check():
             "loaded": model_loaded,
             "path": MODEL_PATH,
             "confidence_threshold": CONF_THRESHOLD,
+            "class_confidence_thresholds": CLASS_CONF_THRESHOLDS,
             "iou_threshold": IOU_THRESHOLD,
         },
         "drift_monitor": {

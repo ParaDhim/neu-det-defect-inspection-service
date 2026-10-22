@@ -31,9 +31,9 @@ COLORS = [
 ]
 
 
-def compute_f1_and_metrics(model: YOLO, data_yaml: str, split: str = "test", imgsz: int = 640, conf: float = 0.28):
+def compute_f1_and_metrics(model: YOLO, data_yaml: str, split: str = "test", imgsz: int = 640, conf: float = 0.19):
     """Evaluates model and computes Precision, Recall, F1 score, and mAP."""
-    metrics = model.val(data=data_yaml, split=split, imgsz=imgsz, conf=conf, verbose=False)
+    metrics = model.val(data=data_yaml, split=split, imgsz=imgsz, conf=conf, rect=False, verbose=False)
 
     p = float(metrics.box.mp)
     r = float(metrics.box.mr)

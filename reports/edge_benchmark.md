@@ -1,3 +1,5 @@
+> **STALE:** latencies here (INT8 7.4 ms) did not reproduce. See `reports/latency_same_session.json` (224px dynamic INT8 is ~5x slower than FP32).
+
 ### Edge Model Export & CPU Benchmarking (ONNX FP32 vs INT8)
 
 | Precision | Model Size | Latency p50 | Latency p95 | Mean Latency | Throughput | Size Reduction |

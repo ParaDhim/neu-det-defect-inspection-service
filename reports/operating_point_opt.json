@@ -1,0 +1,407 @@
+{
+  "protocol": "conf=CONF, iou=0.45, rect=False, imgsz=native",
+  "Run 01 ONNX FP32 (224px, edge)": {
+    "train": {
+      "macro_precision": 0.789,
+      "macro_recall": 0.734,
+      "macro_f1": 0.761,
+      "micro_precision": 0.787,
+      "micro_recall": 0.742,
+      "micro_f1": 0.764,
+      "ultralytics_macro_precision": 0.762,
+      "ultralytics_macro_recall": 0.717,
+      "mAP50": 0.674,
+      "mAP50_95": 0.406,
+      "per_class": {
+        "crazing": {
+          "gt": 551,
+          "tp": 87,
+          "fp": 20,
+          "fn": 464
+        },
+        "inclusion": {
+          "gt": 828,
+          "tp": 704,
+          "fp": 219,
+          "fn": 124
+        },
+        "patches": {
+          "gt": 714,
+          "tp": 682,
+          "fp": 135,
+          "fn": 32
+        },
+        "pitted_surface": {
+          "gt": 348,
+          "tp": 293,
+          "fp": 74,
+          "fn": 55
+        },
+        "rolled-in_scale": {
+          "gt": 511,
+          "tp": 329,
+          "fp": 153,
+          "fn": 182
+        },
+        "scratches": {
+          "gt": 442,
+          "tp": 423,
+          "fp": 79,
+          "fn": 19
+        }
+      }
+    },
+    "val": {
+      "macro_precision": 0.749,
+      "macro_recall": 0.703,
+      "macro_f1": 0.725,
+      "micro_precision": 0.749,
+      "micro_recall": 0.722,
+      "micro_f1": 0.736,
+      "ultralytics_macro_precision": 0.729,
+      "ultralytics_macro_recall": 0.681,
+      "mAP50": 0.623,
+      "mAP50_95": 0.353,
+      "per_class": {
+        "crazing": {
+          "gt": 58,
+          "tp": 10,
+          "fp": 3,
+          "fn": 48
+        },
+        "inclusion": {
+          "gt": 93,
+          "tp": 76,
+          "fp": 29,
+          "fn": 17
+        },
+        "patches": {
+          "gt": 82,
+          "tp": 79,
+          "fp": 17,
+          "fn": 3
+        },
+        "pitted_surface": {
+          "gt": 43,
+          "tp": 34,
+          "fp": 12,
+          "fn": 9
+        },
+        "rolled-in_scale": {
+          "gt": 60,
+          "tp": 33,
+          "fp": 27,
+          "fn": 27
+        },
+        "scratches": {
+          "gt": 53,
+          "tp": 49,
+          "fp": 6,
+          "fn": 4
+        }
+      }
+    },
+    "test": {
+      "macro_precision": 0.741,
+      "macro_recall": 0.717,
+      "macro_f1": 0.729,
+      "micro_precision": 0.751,
+      "micro_recall": 0.697,
+      "micro_f1": 0.723,
+      "ultralytics_macro_precision": 0.734,
+      "ultralytics_macro_recall": 0.709,
+      "mAP50": 0.665,
+      "mAP50_95": 0.357,
+      "per_class": {
+        "crazing": {
+          "gt": 79,
+          "tp": 9,
+          "fp": 5,
+          "fn": 70
+        },
+        "inclusion": {
+          "gt": 89,
+          "tp": 76,
+          "fp": 32,
+          "fn": 13
+        },
+        "patches": {
+          "gt": 84,
+          "tp": 77,
+          "fp": 10,
+          "fn": 7
+        },
+        "pitted_surface": {
+          "gt": 41,
+          "tp": 39,
+          "fp": 5,
+          "fn": 2
+        },
+        "rolled-in_scale": {
+          "gt": 57,
+          "tp": 32,
+          "fp": 30,
+          "fn": 25
+        },
+        "scratches": {
+          "gt": 53,
+          "tp": 48,
+          "fp": 11,
+          "fn": 5
+        }
+      }
+    },
+    "test_shifted": {
+      "macro_precision": 0.532,
+      "macro_recall": 0.305,
+      "macro_f1": 0.388,
+      "micro_precision": 0.437,
+      "micro_recall": 0.275,
+      "micro_f1": 0.338,
+      "ultralytics_macro_precision": 0.546,
+      "ultralytics_macro_recall": 0.287,
+      "mAP50": 0.216,
+      "mAP50_95": 0.102,
+      "per_class": {
+        "crazing": {
+          "gt": 79,
+          "tp": 4,
+          "fp": 5,
+          "fn": 75
+        },
+        "inclusion": {
+          "gt": 89,
+          "tp": 8,
+          "fp": 2,
+          "fn": 81
+        },
+        "patches": {
+          "gt": 84,
+          "tp": 48,
+          "fp": 20,
+          "fn": 36
+        },
+        "pitted_surface": {
+          "gt": 41,
+          "tp": 29,
+          "fp": 103,
+          "fn": 12
+        },
+        "rolled-in_scale": {
+          "gt": 57,
+          "tp": 2,
+          "fp": 4,
+          "fn": 55
+        },
+        "scratches": {
+          "gt": 53,
+          "tp": 20,
+          "fp": 9,
+          "fn": 33
+        }
+      }
+    }
+  },
+  "Run 11 ONNX FP32 (640px)": {
+    "train": {
+      "macro_precision": 0.754,
+      "macro_recall": 0.779,
+      "macro_f1": 0.767,
+      "micro_precision": 0.749,
+      "micro_recall": 0.794,
+      "micro_f1": 0.771,
+      "ultralytics_macro_precision": 0.722,
+      "ultralytics_macro_recall": 0.747,
+      "mAP50": 0.684,
+      "mAP50_95": 0.321,
+      "per_class": {
+        "crazing": {
+          "gt": 551,
+          "tp": 236,
+          "fp": 136,
+          "fn": 315
+        },
+        "inclusion": {
+          "gt": 828,
+          "tp": 749,
+          "fp": 323,
+          "fn": 79
+        },
+        "patches": {
+          "gt": 714,
+          "tp": 680,
+          "fp": 117,
+          "fn": 34
+        },
+        "pitted_surface": {
+          "gt": 348,
+          "tp": 271,
+          "fp": 28,
+          "fn": 77
+        },
+        "rolled-in_scale": {
+          "gt": 511,
+          "tp": 350,
+          "fp": 179,
+          "fn": 161
+        },
+        "scratches": {
+          "gt": 442,
+          "tp": 410,
+          "fp": 121,
+          "fn": 32
+        }
+      }
+    },
+    "val": {
+      "macro_precision": 0.693,
+      "macro_recall": 0.74,
+      "macro_f1": 0.716,
+      "micro_precision": 0.696,
+      "micro_recall": 0.761,
+      "micro_f1": 0.727,
+      "ultralytics_macro_precision": 0.66,
+      "ultralytics_macro_recall": 0.705,
+      "mAP50": 0.622,
+      "mAP50_95": 0.275,
+      "per_class": {
+        "crazing": {
+          "gt": 58,
+          "tp": 28,
+          "fp": 20,
+          "fn": 30
+        },
+        "inclusion": {
+          "gt": 93,
+          "tp": 77,
+          "fp": 42,
+          "fn": 16
+        },
+        "patches": {
+          "gt": 82,
+          "tp": 76,
+          "fp": 15,
+          "fn": 6
+        },
+        "pitted_surface": {
+          "gt": 43,
+          "tp": 28,
+          "fp": 10,
+          "fn": 15
+        },
+        "rolled-in_scale": {
+          "gt": 60,
+          "tp": 41,
+          "fp": 26,
+          "fn": 19
+        },
+        "scratches": {
+          "gt": 53,
+          "tp": 46,
+          "fp": 16,
+          "fn": 7
+        }
+      }
+    },
+    "test": {
+      "macro_precision": 0.699,
+      "macro_recall": 0.743,
+      "macro_f1": 0.721,
+      "micro_precision": 0.681,
+      "micro_recall": 0.747,
+      "micro_f1": 0.712,
+      "ultralytics_macro_precision": 0.64,
+      "ultralytics_macro_recall": 0.683,
+      "mAP50": 0.592,
+      "mAP50_95": 0.264,
+      "per_class": {
+        "crazing": {
+          "gt": 79,
+          "tp": 32,
+          "fp": 22,
+          "fn": 47
+        },
+        "inclusion": {
+          "gt": 89,
+          "tp": 82,
+          "fp": 53,
+          "fn": 7
+        },
+        "patches": {
+          "gt": 84,
+          "tp": 75,
+          "fp": 14,
+          "fn": 9
+        },
+        "pitted_surface": {
+          "gt": 41,
+          "tp": 31,
+          "fp": 3,
+          "fn": 10
+        },
+        "rolled-in_scale": {
+          "gt": 57,
+          "tp": 35,
+          "fp": 28,
+          "fn": 22
+        },
+        "scratches": {
+          "gt": 53,
+          "tp": 46,
+          "fp": 21,
+          "fn": 7
+        }
+      }
+    },
+    "test_shifted": {
+      "macro_precision": 0.435,
+      "macro_recall": 0.261,
+      "macro_f1": 0.326,
+      "micro_precision": 0.393,
+      "micro_recall": 0.238,
+      "micro_f1": 0.297,
+      "ultralytics_macro_precision": 0.419,
+      "ultralytics_macro_recall": 0.253,
+      "mAP50": 0.193,
+      "mAP50_95": 0.074,
+      "per_class": {
+        "crazing": {
+          "gt": 79,
+          "tp": 7,
+          "fp": 5,
+          "fn": 72
+        },
+        "inclusion": {
+          "gt": 89,
+          "tp": 10,
+          "fp": 13,
+          "fn": 79
+        },
+        "patches": {
+          "gt": 84,
+          "tp": 33,
+          "fp": 34,
+          "fn": 51
+        },
+        "pitted_surface": {
+          "gt": 41,
+          "tp": 19,
+          "fp": 75,
+          "fn": 22
+        },
+        "rolled-in_scale": {
+          "gt": 57,
+          "tp": 2,
+          "fp": 5,
+          "fn": 55
+        },
+        "scratches": {
+          "gt": 53,
+          "tp": 25,
+          "fp": 16,
+          "fn": 28
+        }
+      }
+    }
+  }
+}

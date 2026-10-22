@@ -1,0 +1,114 @@
+{
+  "Run 10 FP32 224": [
+    {
+      "size_mb": 12.02,
+      "p50_ms": 5.25,
+      "p95_ms": 5.4,
+      "mean_latency_ms": 5.26,
+      "throughput_fps": 190.1
+    },
+    {
+      "size_mb": 12.02,
+      "p50_ms": 4.11,
+      "p95_ms": 5.7,
+      "mean_latency_ms": 4.28,
+      "throughput_fps": 233.5
+    }
+  ],
+  "Run 10 dyn INT8 224": [
+    {
+      "size_mb": 3.17,
+      "p50_ms": 28.14,
+      "p95_ms": 28.36,
+      "mean_latency_ms": 28.15,
+      "throughput_fps": 35.5
+    },
+    {
+      "size_mb": 3.17,
+      "p50_ms": 28.36,
+      "p95_ms": 28.76,
+      "mean_latency_ms": 28.4,
+      "throughput_fps": 35.2
+    }
+  ],
+  "Run 01 FP32 224": [
+    {
+      "size_mb": 12.05,
+      "p50_ms": 5.28,
+      "p95_ms": 5.39,
+      "mean_latency_ms": 5.29,
+      "throughput_fps": 189.2
+    },
+    {
+      "size_mb": 12.05,
+      "p50_ms": 4.27,
+      "p95_ms": 5.88,
+      "mean_latency_ms": 4.94,
+      "throughput_fps": 202.3
+    }
+  ],
+  "Run 01 dyn INT8 224": [
+    {
+      "size_mb": 3.18,
+      "p50_ms": 28.08,
+      "p95_ms": 28.42,
+      "mean_latency_ms": 28.13,
+      "throughput_fps": 35.5
+    },
+    {
+      "size_mb": 3.18,
+      "p50_ms": 28.57,
+      "p95_ms": 29.07,
+      "mean_latency_ms": 28.59,
+      "throughput_fps": 35.0
+    }
+  ],
+  "Run 11 FP32 640": [
+    {
+      "size_mb": 42.68,
+      "p50_ms": 70.11,
+      "p95_ms": 72.1,
+      "mean_latency_ms": 70.38,
+      "throughput_fps": 14.2
+    },
+    {
+      "size_mb": 42.68,
+      "p50_ms": 70.8,
+      "p95_ms": 72.51,
+      "mean_latency_ms": 70.93,
+      "throughput_fps": 14.1
+    }
+  ],
+  "Run 11 dyn INT8 640": [
+    {
+      "size_mb": 10.96,
+      "p50_ms": 416.63,
+      "p95_ms": 426.71,
+      "mean_latency_ms": 418.01,
+      "throughput_fps": 2.4
+    },
+    {
+      "size_mb": 10.96,
+      "p50_ms": 416.67,
+      "p95_ms": 424.04,
+      "mean_latency_ms": 417.5,
+      "throughput_fps": 2.4
+    }
+  ],
+  "Run 11 QDQ INT8 640": [
+    {
+      "size_mb": 17.01,
+      "p50_ms": 76.02,
+      "p95_ms": 76.62,
+      "mean_latency_ms": 75.99,
+      "throughput_fps": 13.2
+    },
+    {
+      "size_mb": 17.01,
+      "p50_ms": 75.24,
+      "p95_ms": 75.85,
+      "mean_latency_ms": 75.23,
+      "throughput_fps": 13.3
+    }
+  ]
+}
